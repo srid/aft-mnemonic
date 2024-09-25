@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This Moment Of Being Alive</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, serif;
+            background-color: #f8f8f8;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #e0e0e0;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .quote-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+        }
+        #quote {
+            font-size: 48px;
+            line-height: 1.4;
+            max-height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <header>This Moment Of Being Alive</header>
+    <div class="quote-container">
+        <div id="quote"></div>
+    </div>
+
+    <script>
+        const quotes = [
+            "In order for the already always existing peace-on-earth to become apparent it is essential for success to grasp the fact that this is your only moment of being alive.",
+            "The past, although it did happen, is not actual now. The past does not exist.",
+            "The future, although it will happen, is not actual now. The future does not exist.",
+            "Only now is actual",
+            "Yesterday's happiness and harmlessness does not mean a thing if one is miserable and malicious now ... and to hope for happiness and harmlessness tomorrow is to be but wasting this precious moment of being alive in waiting.",
+            "All one gets by waiting is yet more waiting. Any change can only happen now ... and a magical change is just here right now in this actual world.",
+            "The jumping in point to an actual freedom is magically just here right now ... it is already here at this place in infinite space and is always here now at this moment in eternal time.",
+            "If you miss the opportunity this time around ... hey presto ... you have another chance immediately. Life is excellent at providing opportunities like this.",
+            "Ask yourself, each moment again: 'How am I experiencing this moment of being alive'?",
+            "There is only one person in this whole wide world that one can change ... me. This is the most important point to understand thoroughly, otherwise one endlessly tries to change the other ... and as there are billions of 'others' it would be a life-time task with still no success at the end.",
+            "If one grasps that the way to peace-on-earth is by changing oneself -- and oneself only -- then all of one's interactions with others will undergo a radical transformation. You set them free of your graceless demands ... your endless neediness born out of being an alien in an alien world.",
+            "The sole cause of sadness and loneliness is not, as is commonly believed, alienation from others. The single reason for being alone and lonely is from not daring to be what-I-am.",
+            "By not being this flesh and blood body just brimming with sensory organs, but being an identity and a 'self' within instead, 'I' am doomed to perpetual loneliness and aloneness. 'I' am fated to ever pursue an elusive 'Someone' or 'Something' who will fill that aching void.",
+            "When I am what-I-am, there is no void. By being what I actually am -- this flesh and blood body only -- I have no need for others; hence I also have no need to place the burden upon them to fulfil that what was lacking in 'me'.",
+            "Not only do I free myself from that perpetual pursuit, but I also free others in my company from the task 'I' impose upon them. Being this sensuous flesh and blood body is actual fulfilment, each moment again.",
+            "Nevermore will I be needy, greedy and grasping. Nevermore will I plot and plan and manipulate others.",
+            "Nevermore will I have to prostitute myself to others to assuage those main attributes of the identity and self: being lost, lonely, frightened and cunning.",
+            "Being what-I-am -- this flesh and blood body being apperceptively aware -- is to be free-flowing, spontaneous, delightful ... and it is fun, for one can never be hurt again.",
+            "One knows with an actual certainty, from the pure consciousness experiences (PCE's) that everybody has at some stage in their life, that it is possible to experience this moment in eternal time at this place in infinite space as perfection personified",
+            "Ask yourself, each moment again: 'How am I experiencing this moment of being alive'?"
+        ];
+
+        const quoteElement = document.getElementById('quote');
+        let currentQuoteIndex = 0;
+
+        function displayNextQuote() {
+            quoteElement.style.opacity = 0;
+            setTimeout(() => {
+                quoteElement.textContent = quotes[currentQuoteIndex];
+                quoteElement.style.opacity = 1;
+                currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+                setTimeout(displayNextQuote, calculateDisplayTime(quotes[currentQuoteIndex]));
+            }, 1000);
+        }
+
+        function calculateDisplayTime(quote) {
+            const baseTime = 10000; // 10 seconds
+            const wordsPerMinute = 100; // Slower reading speed for larger text
+            const words = quote.split(' ').length;
+            return Math.max(baseTime, (words / wordsPerMinute) * 60 * 1000);
+        }
+
+        displayNextQuote();
+    </script>
+</body>
+</html>
