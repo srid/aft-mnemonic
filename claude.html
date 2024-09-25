@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Production Version 1.1 (Anti-ghosting) -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,22 +35,10 @@
             line-height: 1.4;
             max-height: 100%;
             overflow: hidden;
-            transition: opacity 0.5s ease-in-out;
-        }
-        #flash {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #fff;
-            z-index: 1000;
-            display: none;
         }
     </style>
 </head>
 <body>
-    <div id="flash"></div>
     <header>This Moment Of Being Alive</header>
     <div class="quote-container">
         <div id="quote"></div>
@@ -82,21 +69,16 @@
         ];
 
         const quoteElement = document.getElementById('quote');
-        const flashElement = document.getElementById('flash');
         let currentQuoteIndex = 0;
 
         function displayNextQuote() {
-            flashElement.style.display = 'block';
+            quoteElement.style.opacity = 0;
             setTimeout(() => {
-                flashElement.style.display = 'none';
-                quoteElement.style.opacity = 0;
-                setTimeout(() => {
-                    quoteElement.textContent = quotes[currentQuoteIndex];
-                    quoteElement.style.opacity = 1;
-                    currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
-                    setTimeout(displayNextQuote, calculateDisplayTime(quotes[currentQuoteIndex]));
-                }, 100);
-            }, 200);  // Adjust this timing if needed for your e-reader
+                quoteElement.textContent = quotes[currentQuoteIndex];
+                quoteElement.style.opacity = 1;
+                currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+                setTimeout(displayNextQuote, calculateDisplayTime(quotes[currentQuoteIndex]));
+            }, 1000);
         }
 
         function calculateDisplayTime(quote) {
