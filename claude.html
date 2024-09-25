@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Production Version 1.2 (Alternating Backgrounds) -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +11,10 @@
             margin: 0;
             padding: 0;
             font-family: Georgia, serif;
-            background-color: #f8f8f8;
             color: #000;
             display: flex;
             flex-direction: column;
+            transition: background-color 0.5s ease;
         }
         header {
             text-align: center;
@@ -35,6 +36,7 @@
             line-height: 1.4;
             max-height: 100%;
             overflow: hidden;
+            transition: opacity 0.5s ease-in-out;
         }
     </style>
 </head>
@@ -69,16 +71,20 @@
         ];
 
         const quoteElement = document.getElementById('quote');
+        const body = document.body;
         let currentQuoteIndex = 0;
+
+        const colors = ['#f8f8f8', '#f0f0f0']; // White and very light gray
 
         function displayNextQuote() {
             quoteElement.style.opacity = 0;
             setTimeout(() => {
                 quoteElement.textContent = quotes[currentQuoteIndex];
+                body.style.backgroundColor = colors[currentQuoteIndex % 2];
                 quoteElement.style.opacity = 1;
                 currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
                 setTimeout(displayNextQuote, calculateDisplayTime(quotes[currentQuoteIndex]));
-            }, 1000);
+            }, 500);
         }
 
         function calculateDisplayTime(quote) {
